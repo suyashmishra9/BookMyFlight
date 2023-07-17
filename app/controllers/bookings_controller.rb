@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
-  end
+  end 
 
   def new
     @booking = Booking.new(flight_id: params[:flight_id]) 
