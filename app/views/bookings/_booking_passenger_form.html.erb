@@ -1,0 +1,28 @@
+<div class="nested-form-wrapper " data-new-record="<%= f.object.new_record? %>">
+
+    <div class="m-3">
+      <%= f.label :First_name %>
+      <%= f.text_field :first_name , class:"form-control" , placeholder: "Enter First Name", required: true%>
+    </div>
+
+    <div class="m-3">
+      <%= f.label :Last_name %>
+      <%= f.text_field :last_name ,class:"form-control" , placeholder: "Enter Last Name", required: true %>
+    </div>
+
+    <div class="m-3">
+      <%= f.label :Email_address  %>
+      <%= f.text_field :email_address ,class:"form-control" , placeholder: "Enter Email Address", required: true%>
+    </div>
+
+    <div class="m-3">
+         <%= f.label :Phone_number  %>
+         <%= f.text_field :phone_number, class:"form-control" , placeholder: "Enter Email Address", required: true %>
+    </div>
+   
+  <div>
+   <button type="button" data-action="nested-form#remove" class="btn btn-primary btn-lg">Remove Passenger</button>
+  </div> 
+    
+    <%= f.hidden_field :_destroy %>
+</div>

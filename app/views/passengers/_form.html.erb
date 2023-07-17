@@ -1,0 +1,37 @@
+<%= form_with model: @passenger do |form| %>
+
+  <div>
+  	   <%= form.label :First_name %>
+  	   <%= form.text_field :first_name %>
+  	   <% passenger.errors.full_messages_for(:first_name).each do |message| %>
+  	   <div><%= message %> </div>
+  	   <% end %>
+  </div>
+  <div>
+  	   <%= form.label :Last_name %>
+  	   <%= form.text_field :last_name %>
+  	   <% passenger.errors.full_messages_for(:last_name).each do |message| %>
+  	   <div><%= message %> </div>
+  	   <% end %>
+
+  <div>
+       <%= form.label :Email_address %>
+       <%= form.text_field :email_address %>
+       <% passenger.errors.full_messages_for(:email_address).each do |message| %>
+       <div><%= message %> </div>
+       <% end %>
+       
+  <div>
+       <%= form.label :Phone_number %>
+       <%= form.text_field :phone_number %>
+       <% passenger.errors.full_messages_for(:phone_number).each do |message| %>
+       <div><%= message %> </div>
+       <% end %>          
+  </div>
+
+  <div>
+  	<%= form.submit %>
+  </div>
+    
+
+  <% end %>

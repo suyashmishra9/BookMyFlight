@@ -1,0 +1,42 @@
+<%= render "flights/formsearch", flight: @flight%>
+
+<div class="mt-5 table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Flight No</th>
+        <th scope="col">Departure Airport</th>
+        <th scope="col">Arrival Airport</th>
+        <th scope="col">Departure Time</th>
+        <th scope="col">Arrival Time</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Details</th>
+        <th scope="col">Book Ticket</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+     <% @flightsearch.each do |flight| %>
+          <tr>
+            <td><%= flight.flight_no %></td>
+            <td><%= flight.departure_airport %></td>
+            <td><%= flight.arrival_airport %></td>
+            <td><%= flight.departure_time %></td>
+            <td><%= flight.arrival_time %></td>
+            <td><%= flight.total_price %></td>
+            <td>
+              <%= link_to airline_flight_path(@airline, flight), class: "btn btn-primary" do %>
+                  View Details
+              <% end %>
+            </td>
+            <td>
+              <%= link_to "Book Ticket", new_booking_path(flight_id: flight.id), class: "btn btn-success"%>
+            </td>
+          </tr>
+        <% end %>
+      
+    </tbody>
+  </table>
+</div>
+<%= paginate @flightsearch  %>

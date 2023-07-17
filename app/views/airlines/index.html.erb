@@ -1,0 +1,23 @@
+<h1 class="col-md-12 text-center"> All Airlines </h1>
+<%= @airline_test%>
+
+<div class="d-flex flex-row">
+  <% @airline.each do |airline| %>
+    <div class="card m-3" style="width: 18rem;">
+      <img src="https://media.istockphoto.com/id/1258141375/vector/plane-travel-icon-air-travel-around-the-world-flying-around-the-world-travel-agency-logo.jpg?s=1024x1024&w=is&k=20&c=txsdmB_UnuY8XQWrpOYIfecWgmzSjxvyt4hZ2tN5DlM=" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title"><%= airline.name %></h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <%= link_to "See Flights", airline, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<div class="m-3">
+<%= link_to new_airline_path  do %>
+  <button type="button" class="btn btn-success mr-3">New Airline </button>
+<% end %>
+</div>
+

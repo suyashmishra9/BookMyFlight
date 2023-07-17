@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Flight_info: MyString
+  passenger: MyString
+  booking_code: 1
+  status: MyString
+  total_price: 1
+
+two:
+  Flight_info: MyString
+  passenger: MyString
+  booking_code: 1
+  status: MyString
+  total_price: 1

@@ -1,0 +1,7 @@
+<div>
+	<%= form.label :Flight_info %>
+	<%= form.collection_select :flight_id , Flight.all , :id , :flight_no %>
+	<% booking.errors.full_messages_for(:flight_info).each do |message| %>
+	<div> <%= message %> </div>
+	<% end %>
+</div>

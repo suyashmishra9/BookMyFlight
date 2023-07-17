@@ -1,0 +1,15 @@
+<div class= "my-3">
+	
+<%= form_with model: flight , :method => "get" do |form| %>
+
+
+	<%= form.label :Departure_airport %>
+	<%= form.text_field :departure_airport %>
+
+	<%= form.label :Arrival_airport %>
+	<%= form.text_field :arrival_airport %>
+  
+    <%= form.submit "Submit"%>
+
+<% end %>
+</div>

@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <%= link_to "BookMyFLight" , home_index_url , class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Airlines", airlines_path , class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Others
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "All bookings", bookings_path, class:"dropdown-item"%></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About Us" , home_about_url , class: "nav-link active" %>
+        </li>
+      </ul>
+     <% if  user_signed_in? %>
+        <div class="m-3">
+          Welcome <b><%= current_user.email%></b>
+        </div>
+        <div class="m-3">
+          <%= link_to destroy_user_session_path do %>
+          <button type="button" class="btn btn-success mr-3">Log Out</button>
+          <% end %>
+        </div>
+        <div class="m-3">
+          <%= link_to edit_user_registration_path do %>
+          <button type="button" class="btn btn-success mr-3">Edit User</button>
+          <% end %>
+        </div>
+        <% else %> 
+        <div class="m-3">
+          <%= link_to new_user_registration_path do %>
+          <button type="button" class="btn btn-success mr-3">Sign Up</button>
+          <% end %>
+        </div>
+        <div class="m-3">
+          <%= link_to user_session_path do %>
+          <button type="button" class="btn btn-success mr-3">Sign In</button>
+          <% end %>
+        </div>
+        <% end %>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

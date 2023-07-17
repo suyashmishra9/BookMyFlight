@@ -1,0 +1,45 @@
+<div class="mx-5">
+  <h2>
+    <p>
+      <b>Booking Code :- </b><%= @booking.booking_code %>
+    </p>
+  </h2>
+  <h4>Your ticket has been generated</h4>
+  <div class="my-3">
+    <b>Airline name :- </b><%= @booking.flight.airline.name %> &nbsp&nbsp&nbsp&nbsp
+    <b>Airline code :- </b><%= @booking.flight.airline.code %> &nbsp&nbsp&nbsp&nbsp
+  </div>
+
+  <div class="my-3">
+    <b>From :- </b><%= @booking.flight.departure_airport %> &nbsp&nbsp&nbsp&nbsp
+    <b>To :- </b><%= @booking.flight.arrival_airport %>
+  </div>
+
+  <p>
+    <b>Flight No. :- </b><%= @booking.flight.flight_no %>
+  </p>
+
+  <div class="my-3">
+    <% @booking.passengers.each do |passenger| %>
+    <b>Your name :- </b><%= passenger.first_name %>
+    </b><%= passenger.last_name %>
+    <% end %>
+  </div>
+
+  <p>
+    <b>Booking Status :- </b><%= @booking.status %>
+  </p>
+
+  <p>
+    <b>Total Price :- </b><%= @booking.flight.total_price %>
+  </p>
+  
+  <p>
+    <b>Seat No. :- </b><%= @booking.seat_no %>
+  </p>
+  <div class="my-3">
+    <%= link_to "Edit Ticket", edit_booking_path, class: "btn btn-warning btn-rounded" %>
+    &nbsp&nbsp&nbsp&nbsp
+    <%= link_to "Delete Ticket", booking_path, class: "btn btn-danger btn-rounded", data: { turbo_method: :delete, turbo_confirm: "Are you sure, You want to cancel your ticket ?" } %>
+  </div>
+</div>

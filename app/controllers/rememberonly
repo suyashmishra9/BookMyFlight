@@ -1,0 +1,91 @@
+<h2 class="col-md-12 text-center">Seat Selection</h2>
+<table class="seat-layout">
+  <tbody>
+    <% ('A'..'F').each do |row| %>
+      <tr>
+        <% (1..35).each do |seat_number| %>
+          <td>
+            <% seat_label = "#{seat_number}#{row}" %>
+            <%= form.radio_button :selected_seat, seat_label, id: "seat-#{seat_label}", value: seat_label, onchange: "updateSelectedSeat('#{seat_label}')" %>
+            <%= form.label "seat-#{seat_label}", seat_label %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>Selected seat: <span id="selectedSeat"></span></p>
+
+<script>
+  function updateSelectedSeat(seatLabel) {
+    document.getElementById('selectedSeat').textContent = seatLabel;
+  }
+</script>
+
+
+
+
+
+
+
+ok now i want to store the seat no in the booking controller to @booking.seat_no variable in my bookings controller :- class BookingsController < ApplicationController
+  load_and_authorize_resource
+  before_action :authenticate_user!
+
+  def index
+    @booking = Booking.all
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
+  def new
+    @booking = Booking.new(flight_id: params[:flight_id]) 
+    @booking.passengers.build
+    Booking.flightmap
+    @selected_seats = []
+    @flightseats = Booking.flightmap 
+  end
+
+  def create
+    @booking = Booking.new(booking_params)
+    @randomseat = Booking.flightmap
+    @booking.seat_no = ?
+    if @booking.save 
+       @booking.flight.decrement!(:available_seats , @booking.passengers.count)
+       MailjobJob.perform_now(@booking, current_user)
+      redirect_to @booking
+    else
+      render :new , status:  :unprocessable_entity
+    end   
+  end
+
+  def edit
+    @booking = Booking.find(params[:id])
+  end
+
+  def update 
+    @booking = Booking.find(params[:id])
+
+    if @booking.update(booking_params)
+      redirect_to @booking 
+    else
+      render :edit , ststus:  :unprocessable_entity
+    end   
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.flight.increment!(:available_seats , @booking.passengers.count)
+    @booking.destroy
+
+    redirect_to airline_url , status: :see_other
+  end   
+ 
+  private
+
+  def booking_params
+    params.require(:booking).permit(:flight_info , :passenger , :booking_code , :status ,:total_price , :flight_id , :passenger_id , :seat_no, passengers_attributes: [:first_name , :last_name , :email_address, :phone_number,  :booking_id, :_destroy])
+  end
+end

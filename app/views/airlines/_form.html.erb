@@ -1,0 +1,20 @@
+<%= form_with model: @airline, class: "row g-3 needs-validation", novalidate: true do |form| %>
+
+<div class="col-md-6 m-3">
+   
+   <div class="m-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Enter airline name", required: true %>
+   </div>
+     
+  <div class="m-3">
+    <%= form.label :code, class: "form-label" %>
+    <%= form.text_field :code, class: "form-control", placeholder: "Enter airline code", required: true %>
+  </div>
+</div>
+  
+<div class="col-12 m-3">
+    <%= form.submit "Submit ", class: "btn btn-primary btn-lg" %>
+  </div>
+
+<% end %>

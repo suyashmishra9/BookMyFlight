@@ -1,0 +1,41 @@
+<div class="card my-3">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Flight Details</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <p class="card-text"><b>Flight Number:</b> <%= @flight.flight_no %></p>
+        <p class="card-text"><b>Airline Name:</b> <%= @flight.airline_name %></p>
+        <p class="card-text"><b>From:</b> <%= @flight.departure_airport %></p>
+        <p class="card-text"><b>To:</b> <%= @flight.arrival_airport %></p>
+        <p class="card-text"><b>Departure Time:</b> <%= @flight.departure_time %></p>
+        <p class="card-text"><b>Arrival Time:</b> <%= @flight.arrival_time %></p>
+      </div>
+      <div class="col-md-6">
+        <p class="card-text"><b>Available Seats:</b> <%= @flight.available_seats %></p>
+        <p class="card-text"><b>Total Seats:</b> <%= @flight.total_seat %></p>
+        <p class="card-text"><b>Flight Duration:</b> <%= @flight.flight_duration %></p>
+        <p class="card-text"><b>Total Price:</b> <%= @flight.total_price %></p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer bg-light">
+    <div class="row justify-content-end">
+      <div class="col-auto">
+        <% if user_signed_in? && can?(:update, @flight) %>
+          <%= link_to "Edit", edit_airline_flight_path(@flight.airline_id), class: "btn btn-primary btn-sm" %>
+        <% end %>
+      </div>
+      <div class="col-auto">
+        <% if user_signed_in? && can?(:destroy, @flight) %>
+          <%= link_to "Delete", airline_flight_path(@flight), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to "Book Ticket", new_booking_path(flight_id: @flight.id), class: "btn btn-success"%>
+
+      </div>
+    </div>
+  </div>
+</div>

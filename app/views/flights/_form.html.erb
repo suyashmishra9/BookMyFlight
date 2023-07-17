@@ -1,0 +1,65 @@
+<%= form_with model: [@airline, @flight] , class: "row g-3 needs-validation", novalidate: true do |form| %>
+
+<div class="col-md-6 m-3">
+
+	<div class="m-3">
+	<%= form.label :Flight_number , class: "form-label" %>
+	<%= form.number_field :flight_no ,class: "form-control", placeholder: "Flight No.", required: true%>
+	</div>
+		
+    <div class="m-3">
+	<% form.label :airline_id %>
+    <% form.collection_select :airline_id, Airline.all, :id, :name %>
+   </div>
+   
+    <div class="m-3">
+    <%= form.label :Airline_name , class: "form-label" %>
+	<%= form.text_field :airline_name ,class: "form-control", placeholder: "Airline_name", required: true%>
+    </div>
+	
+     <div class="m-3">
+	<%= form.label :Departure_airport , class: "form-label" %>
+	<%= form.text_field :departure_airport ,class: "form-control", placeholder: "Departure airport", required: true%>
+     </div>
+
+    <div class="m-3">
+	<%= form.label :Arrival_airport , class: "form-label" %>
+	<%= form.text_field :arrival_airport ,class: "form-control", placeholder:"Arrival airport", required: true%>
+    </div>
+
+    <div class="m-3">
+	<%= form.label :Departure_time , class: "form-label" %>
+	<%= form.time_field :departure_time ,class: "form-control", placeholder: "Departure time", required: true%>
+   </div>
+
+    <div class="m-3">
+	<%= form.label :Arrival_time , class: "form-label" %>
+	<%= form.time_field :arrival_time ,class: "form-control", placeholder: "Arrival time", required: true%>
+	</div>
+
+    <div class="m-3">
+	<%= form.label :Available_seats , class: "form-label" %>
+	<%= form.number_field :available_seats ,class: "form-control", placeholder: "Available seats", required: true%>
+    </div>
+	
+    <div class="m-3">
+	<%= form.label :Total_seat , class: "form-label" %>
+	<%= form.number_field :total_seat ,class: "form-control", placeholder: "Total seat", required: true%>
+    </div>
+    	
+    <div class="m-3">
+	<%= form.label :Flight_duration , class: "form-label" %>
+	<%= form.time_field :flight_duration ,class: "form-control", placeholder: "Flight duration", required: true%>
+    </div>
+
+    <div class="m-3">
+	<%= form.label :Total_price , class: "form-label" %>
+	<%= form.number_field :total_price ,class: "form-control", placeholder: "Total price", required: true%>
+    </div>
+</div>
+
+<div class="col-12 m-3">
+    <%= form.submit "Submit", class: "btn btn-primary btn-lg" %>
+  </div>
+
+  <% end %>
