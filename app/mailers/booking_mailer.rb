@@ -4,4 +4,4 @@ class BookingMailer < ApplicationMailer
     @booking = Booking.find_by(id: booking)
     mail(to: current_user, subject: 'Booking Confirmation')
   end
-end c
+end   c
