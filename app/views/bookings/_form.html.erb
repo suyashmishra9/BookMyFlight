@@ -14,8 +14,10 @@
 
   <div class="card w-75">
     <div class="card-body"> 
-      <h5 class="card-title">Flight No. <%= @booking.flight.flight_no %></h5>
-      <p class="card-text">From: <%= @booking.flight.departure_airport %> to <%= @booking.flight.arrival_airport %></p>
+      <p class="card-title">Flight No. <%= @booking.flight.flight_no %></p>
+      <h5 class="card-text">From: <strong><%= @booking.flight.departure_airport %></strong> to <strong><%= @booking.flight.arrival_airport %></strong></h5>
+
+      <p class="card-text">Price: <%= @booking.flight.total_price %></p>
       <p class="card-text">Depart Time: <%= @booking.flight.departure_time %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Arrive Time: <%= @booking.flight.arrival_time %></p>
     </div>
   </div>

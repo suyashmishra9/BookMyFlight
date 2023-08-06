@@ -17,10 +17,16 @@ class BookingsController < ApplicationController
   end
 
   def create
+
     @booking = Booking.new(booking_params)
     if @booking.save 
        @booking.flight.decrement!(:available_seats , @booking.passengers.count)
-       MailjobJob.perform_now(@booking, current_user)
+        MailjobJob.perform_now(@booking, current_user)
+       # UserMailerJob.perform_async(@booking, current_user)
+       # UserMailerJob.perform(@booking.id, current_user.id)
+
+
+
       redirect_to @booking
     else
       render :new , status:  :unprocessable_entity
