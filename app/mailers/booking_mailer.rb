@@ -1,7 +1,7 @@
 class BookingMailer < ApplicationMailer
-
-  def booking_confirmation(*booking, current_user)
-    @booking = Booking.find_by(id: booking)
-    mail(to: current_user, subject: 'Booking Confirmation')
+  
+  def booking_confirmation(booking, current_user)  # Remove the * from arguments
+    @booking = booking
+    mail(to: current_user.email, subject: 'Booking Confirmation')
   end
-end   
+end
