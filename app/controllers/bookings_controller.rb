@@ -23,6 +23,7 @@ class BookingsController < ApplicationController
        @booking.flight.decrement!(:available_seats , @booking.passengers.count)
       #MailjobJob.perform_now(@booking, current_user)
         # BookingMailerJob.perform_async(@booking, current_user)
+        
         BookingMailerJob.perform_async(@booking.id, current_user.id)
 
       redirect_to @booking
