@@ -20,7 +20,7 @@ class FlightsController < ApplicationController
      @flightsearch = @flights.page(params[:page])
     end
   end
-
+  
   
 
 

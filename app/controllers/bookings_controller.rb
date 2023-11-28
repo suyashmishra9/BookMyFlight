@@ -3,7 +3,8 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @booking = Booking.all
+
+    @booking = Booking.all 
   end
 
   def show
@@ -21,7 +22,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     if @booking.save 
        @booking.flight.decrement!(:available_seats , @booking.passengers.count)
-      #MailjobJob.perform_now(@booking, current_user)
+        #MailjobJob.perform_now(@booking, current_user)
         # BookingMailerJob.perform_async(@booking, current_user)
         
         BookingMailerJob.perform_async(@booking.id, current_user.id)

@@ -12,7 +12,7 @@ module BookMyFlight
     config.load_defaults 7.0
     config.active_job.queue_adapter = :sidekiq
     config.assets.enabled = true
-
+    
     # config/application.rb
     
     # Configuration for the application, engines, and railties goes here.
