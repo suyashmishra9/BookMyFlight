@@ -1,6 +1,0 @@
-services:
-  web:
-    image: ruby:3.0.0p0
-    command: bundle exec rails server
-    ports:
-      - 3000
