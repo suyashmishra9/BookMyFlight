@@ -7,7 +7,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <% if can?(:search, Flight) %>
+          <%= link_to "Flight Search", flight_search_path , class: "nav-link" %>
+          <% end %>
         </li>
         <li class="nav-item">
           <%= link_to "Airlines", airlines_path , class: "nav-link" %>
@@ -27,6 +29,7 @@
           <%= link_to "About Us" , home_about_url , class: "nav-link active" %>
         </li>
       </ul>
+
      <% if  user_signed_in? %>
         <div class="m-3">
           Welcome <b><%= current_user.email%></b>

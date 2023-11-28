@@ -1,3 +1,5 @@
+<!-- app/views/flights/search.html.erb -->
+
 <%= render "flights/formsearch", flight: @flight%>
 
 <div class="mt-5 table-responsive">
@@ -26,7 +28,7 @@
             <td><%= flight.arrival_time %></td>
             <td><%= flight.total_price %></td>
             <td>
-              <%= link_to airline_flight_path(@airline, flight), class: "btn btn-primary" do %>
+              <%= link_to airline_flight_path(flight.airline, flight), class: "btn btn-primary" do %>
                   View Details
               <% end %>
             </td>
@@ -39,4 +41,4 @@
     </tbody>
   </table>
 </div>
- <%= paginate @flightsearch  %> 
+<%= paginate @flightsearch  %>

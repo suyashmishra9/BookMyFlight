@@ -14,4 +14,9 @@ Rails.application.routes.draw do
 
   resources :passengers
   resources :bookings
+
+  get '/flight_search', to: 'flights#search', as: 'flight_search'
+  get '/api/bookings', to: 'booking#index'
+
+   
 end

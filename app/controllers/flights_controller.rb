@@ -1,10 +1,29 @@
 class FlightsController < ApplicationController
-   before_action :authenticate_user!, except: [:show]
+   before_action :authenticate_user!, except: [:show ,:search]
    load_and_authorize_resource
+
   def index
-  
+     
   end
-   
+  
+  def search
+    @flights = Flight.all # Assuming your Flight model is called "Flight"
+    # You can add additional filtering or sorting logic here if needed
+
+   if params[:departure_airport].present? && params[:arrival_airport].present?
+    departure_airport = params[:departure_airport].strip.downcase
+    arrival_airport = params[:arrival_airport].strip.downcase
+
+    @flightsearch = @flights.where("LOWER(departure_airport) LIKE ? AND LOWER(arrival_airport) LIKE ?", "%#{departure_airport}%", "%#{arrival_airport}%").page(params[:page]).per(5)
+
+    else
+     @flightsearch = @flights.page(params[:page])
+    end
+  end
+  
+  
+
+
   def show
     @flight = Flight.find(params[:id])
   end
@@ -52,4 +71,6 @@ class FlightsController < ApplicationController
   def flight_params
     params.require(:flight).permit(:flight_no, :airline_name,:departure_airport,:arrival_airport,:departure_time ,:arrival_time ,:available_seats ,:total_seat ,:flight_duration ,:total_price , :airline_id)
   end
+
+
 end
